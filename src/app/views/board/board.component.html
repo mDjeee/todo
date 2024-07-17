@@ -10,20 +10,8 @@
       [ngClass]="store.loading() ? 'disabled' : ''"
       (cdkDropListDropped)="drop($event)">
       @for (item of store.tasks() | completed: false; track item) {
-        <div class="box" cdkDrag [cdkDragDisabled]="store.loading()" #el [id]="item.id">
-          <div>
-            <div>{{item.title}}</div>
-          </div>
-          <div class="btns">
-            <div class="redactor" *ngIf="el.id !== editingTask.id; else confirmIcons">
-              <mat-icon class="form__icon" fontIcon="edit" (click)="toEditingMode(el)"></mat-icon>
-              <mat-icon class="form__icon" fontIcon="delete"></mat-icon>
-            </div>
-            <ng-template class="confirm" #confirmIcons>
-              <mat-icon class="form__icon" fontIcon="check"></mat-icon>
-              <mat-icon class="form__icon" fontIcon="close" (click)="removeEditMode()"></mat-icon>
-            </ng-template>
-          </div>
+        <div class="box" cdkDrag [cdkDragDisabled]="store.loading()" [id]="item.id">
+          <app-task [task]="item"></app-task>
         </div>
       }
     </div>
@@ -40,25 +28,8 @@
       [ngClass]="store.loading() ? 'disabled' : ''"
       (cdkDropListDropped)="drop($event)">
       @for (item of store.tasks() | completed: true; track item) {
-        <div class="box" cdkDrag [cdkDragDisabled]="store.loading()" #el [id]="item.id">
-          <div>
-            <div *ngIf="el.id !== editingTask.id; else editTitle">{{item.title}}</div>
-            <ng-template #editTitle>
-              <input matInput type="text">
-            </ng-template>
-          </div>
-          <div class="btns">
-            <div class="redactor" *ngIf="el.id !== editingTask.id; else confirmIcons">
-              <mat-icon class="form__icon" fontIcon="edit" (click)="toEditingMode(el)"></mat-icon>
-              <mat-icon class="form__icon" fontIcon="delete"></mat-icon>
-            </div>
-            <ng-template class="confirm" #confirmIcons>
-              <div class="redactor">
-                <mat-icon class="form__icon" fontIcon="check"></mat-icon>
-                <mat-icon class="form__icon" fontIcon="close" (click)="removeEditMode()"></mat-icon>
-              </div>
-            </ng-template>
-          </div>
+        <div class="box" cdkDrag [cdkDragDisabled]="store.loading()" [id]="item.id">
+          <app-task [task]="item"></app-task>
         </div>
       }
     </div>

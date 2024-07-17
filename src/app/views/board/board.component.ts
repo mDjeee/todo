@@ -16,6 +16,7 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
+import { TaskComponent } from './components/task/task.component';
 
 @Component({
   selector: 'app-board',
@@ -31,17 +32,13 @@ import { MatInput } from '@angular/material/input';
     NgClass,
     MatIcon,
     MatButton,
-    MatInput
+    MatInput,
+    TaskComponent
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
 export class BoardComponent implements OnInit {
-  editingTask = {
-    id: ''
-  };
-  isEdit = false;
-
   store = inject(TasksStore);
 
   drop(event: CdkDragDrop<ITask[]>) {
@@ -69,17 +66,5 @@ export class BoardComponent implements OnInit {
 
   async getAllTasks() {
     await this.store.loadAll();
-  }
-
-  editTask(task: ITask) {
-    console.log(task);
-  }
-
-  toEditingMode(element: any) {
-    this.editingTask.id = element.id;
-  }
-
-  removeEditMode() {
-    this.editingTask.id = '';
   }
 }

@@ -62,20 +62,3 @@
 .disabled {
   opacity: 0.5;
 }
-
-.redactor {
-  display: flex;
-}
-
-.form__icon {
-  padding: 2px;
-  border-radius: 2px;
-}
-
-.form__icon {
-  &:hover {
-    cursor: pointer;
-    background-color: #448aff;
-    color: #ffffff;
-  }
-}
