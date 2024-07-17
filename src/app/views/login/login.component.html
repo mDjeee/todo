@@ -1,0 +1,25 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="some@gmail.com" formControlName="email" [errorStateMatcher]="matcher">
+    @if (loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (loginForm.controls['email'].hasError('required')) {
+      <mat-error>Email is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="password" formControlName="password" [errorStateMatcher]="matcher">
+    @if (loginForm.controls['password'].hasError('minlength') && !loginForm.controls['password'].hasError('required')) {
+      <mat-error>Should contain at least 8 digits</mat-error>
+    }
+    @if (loginForm.controls['password'].hasError('required')) {
+      <mat-error>Password is required</mat-error>
+    }
+  </mat-form-field>
+
+  <button color="accent" mat-button [disabled]="!loginForm.valid">Submit</button>
+</form>
