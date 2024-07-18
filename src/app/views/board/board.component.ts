@@ -17,7 +17,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { TaskComponent } from './components/task/task.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { CookieService } from '../../core/services/cookie.service';

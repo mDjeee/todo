@@ -11,7 +11,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatTooltip } from '@angular/material/tooltip';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { UserStore } from './store/user.store';
 import { UserDto } from '../../core/interfaces/user.interface';
