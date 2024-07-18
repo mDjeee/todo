@@ -4,7 +4,7 @@ import { MatTabLink, MatTabNav, MatTabNavPanel } from '@angular/material/tabs';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { UserStore } from '../../views/login/store/user.store';
+import { UserStore } from '../../../views/login/store/user.store';
 
 @Component({
   selector: 'app-header',
