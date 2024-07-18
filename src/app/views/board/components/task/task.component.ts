@@ -3,6 +3,7 @@ import { ITask } from '../../interfaces/task.interface';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-task',
@@ -18,8 +19,14 @@ export class TaskComponent {
   dialog = inject(MatDialog);
 
   openDialog() {
-    const doalogRef = this.dialog.open(TaskDialogComponent, {
+    this.dialog.open(TaskDialogComponent, {
       data: this.task
     });
+  }
+
+  openConfirmDialog() {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: this.task.id
+    })
   }
 }

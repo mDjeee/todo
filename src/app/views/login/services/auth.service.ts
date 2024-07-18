@@ -10,9 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   login(userData: any): any {
-    console.log(userData)
     this.http.post('/api/auth/token/login/', userData).subscribe((data: any) => {
-      console.log(data);
       this.cookieService.set('token', data.token);
       this.cookieService.set('username', data.username);
       this.cookieService.set('user_id', data.user_id);

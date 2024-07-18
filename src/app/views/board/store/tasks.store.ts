@@ -7,7 +7,8 @@ import { IUpdateTaskDto } from '../dto/task-request.dto';
 
 const initialState: BoardState = {
   tasks: [],
-  loading: false
+  loading: false,
+  count: 0,
 }
 
 export const TasksStore = signalStore(
@@ -20,11 +21,13 @@ export const TasksStore = signalStore(
         taskService.getTasks()
           .pipe(take(1))
           .subscribe({
-            next: ({ results: tasks }) => {
+            next: (response) => {
               patchState(store, {
-                tasks,
-                loading: false
-              })
+                tasks: response.results,
+                loading: false,
+                count: response.count
+              });
+              taskService.save(response);
             }
           });
       },
@@ -32,6 +35,16 @@ export const TasksStore = signalStore(
       async updateTask(taskId: string, task: IUpdateTaskDto) {
         patchState(store, { loading: true });
         taskService.updateTaskOnDrag(taskId, task)
+          .pipe(take(1))
+          .subscribe({
+            next: () => this.loadAll(),
+            error: () => patchState(store, { loading: false })
+          })
+      },
+
+      async addTask(task: IUpdateTaskDto) {
+        patchState(store, { loading: true });
+        taskService.add(task)
           .pipe(take(1))
           .subscribe({
             next: () => this.loadAll(),

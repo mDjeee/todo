@@ -1,6 +1,21 @@
+<mat-paginator
+  [length]="store.count()"
+  [pageSize]="size"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="pageEvent($event)"
+  aria-label="Select page"
+  color="accent"
+>
+
+</mat-paginator>
 <div cdkDropListGroup>
   <div class="container">
-    <h2>To do</h2>
+    <div class="title">
+      <h2>To do</h2>
+      <button mat-button color="accent" (click)="add()">
+        <mat-icon fontIcon="add" style="font-size: 24px"></mat-icon>
+      </button>
+    </div>
     <mat-progress-bar *ngIf="store.loading()" mode="indeterminate"></mat-progress-bar>
 
     <div

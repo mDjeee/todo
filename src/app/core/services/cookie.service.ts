@@ -34,7 +34,7 @@ export class CookieService {
     document.cookie = `${key} = ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   }
 
-  set(key: string, value: string) {
+  set(key: string, value: any) {
     document.cookie = `${key}=${value}`;
   }
 }

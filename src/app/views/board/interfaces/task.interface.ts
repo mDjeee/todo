@@ -9,5 +9,6 @@ export interface ITask {
 
 export interface BoardState {
   tasks: ITask[],
-  loading: boolean
+  loading: boolean,
+  count: number,
 }
