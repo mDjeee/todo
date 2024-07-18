@@ -14,3 +14,17 @@
 .list {
   list-style-type: none;
 }
+
+.user__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.exit {
+  &:hover {
+    cursor: pointer;
+    color: blueviolet;
+  }
+}

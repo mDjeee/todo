@@ -1,4 +1,6 @@
 <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+  <p class="title" >Login</p>
+  <mat-progress-bar *ngIf="userStore.loading()" mode="buffer"></mat-progress-bar>
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input matInput placeholder="some@gmail.com" formControlName="email" [errorStateMatcher]="matcher">
@@ -10,6 +12,7 @@
     }
   </mat-form-field>
 
+  <mat-progress-bar *ngIf="userStore.loading()" mode="buffer"></mat-progress-bar>
   <mat-form-field>
     <mat-label>Password</mat-label>
     <input matInput placeholder="password" formControlName="password" [errorStateMatcher]="matcher">
@@ -21,5 +24,5 @@
     }
   </mat-form-field>
 
-  <button color="accent" mat-button [disabled]="!loginForm.valid">Submit</button>
+  <button color="accent" mat-button [disabled]="!loginForm.valid || userStore.loading()">Submit</button>
 </form>

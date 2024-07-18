@@ -14,6 +14,13 @@
   </div>
 
   <div>
-    <a routerLink="login">Login</a>
+    <a *ngIf="!userStore.token(); else user" routerLink="login">Login</a>
   </div>
+
+  <ng-template #user>
+    <div class="user__container">
+      <p>{{ userStore.username() }}</p>
+      <mat-icon class="exit" fontIcon="exit_to_app" (click)="userStore.logout()"></mat-icon>
+    </div>
+  </ng-template>
 </mat-toolbar>

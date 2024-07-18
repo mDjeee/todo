@@ -13,6 +13,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatTooltip } from '@angular/material/tooltip';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { UserStore } from './store/user.store';
+import { UserDto } from '../../core/interfaces/user.interface';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { NgIf } from '@angular/common';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,12 +36,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatButtonModule,
     MatError,
     MatHint,
-    MatTooltip
+    MatTooltip,
+    MatProgressBar,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  userStore = inject(UserStore);
   constructor(
     private authService: AuthService
   ) {
@@ -52,7 +59,8 @@ export class LoginComponent {
 
   login() {
     if(this.loginForm.valid) {
-      this.authService.login(this.loginForm.getRawValue())
+      const userData = this.loginForm.getRawValue() as UserDto;
+      this.userStore.login(userData);
     }
   }
 }

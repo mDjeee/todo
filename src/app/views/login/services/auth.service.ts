@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from '../../../core/services/cookie.service';
 import { Router } from '@angular/router';
+import { UserDto } from '../../../core/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,13 @@ export class AuthService {
     private router: Router,
     ) { }
 
-  login(userData: any): any {
-    this.http.post('/api/auth/token/login/', userData).subscribe((data: any) => {
-      this.cookieService.set('token', data.token);
-      this.cookieService.set('username', data.username);
-      this.cookieService.set('user_id', data.user_id);
-      this.router.navigate(['/board']);
-    });
+  login(userData: UserDto): any {
+    return this.http.post('/api/auth/token/login/', userData);
   }
 
   logout() {
     this.cookieService.remove('token');
-    this.cookieService.remove('username');
-    this.cookieService.remove('user_id');
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {
