@@ -1,9 +1,6 @@
-import { HttpInterceptor, HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { CookieService } from '../services/cookie.service';
 import { inject } from '@angular/core';
-
-export interface TokenInterceptor {
-}
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const cookieService = inject(CookieService);
