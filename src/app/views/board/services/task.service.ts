@@ -11,7 +11,7 @@ import { CookieService } from '../../../core/services/cookie.service';
   providedIn: 'root'
 })
 export class TaskService {
-  limit: number = 10;
+  limit: number = 25;
   count: number = 0;
   offset: number = 0;
 
@@ -44,6 +44,6 @@ export class TaskService {
   updateLimit(){
     this.count = +(this.cookieService.get('count') ?? 0);
     this.offset = +(this.cookieService.get('offset') ?? 0);
-    this.limit = +(this.cookieService.get('pageSize') ?? 10);
+    this.limit = +(this.cookieService.get('pageSize') ?? 25);
   }
 }

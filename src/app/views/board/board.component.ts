@@ -74,7 +74,7 @@ export class BoardComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.getAllTasks();
     this.count = +(this.cookieService.get('count') ?? 0);
-    this.size = +(this.cookieService.get('pageSize') ?? 10);
+    this.size = +(this.cookieService.get('pageSize') ?? 25);
   }
 
   async getAllTasks() {
